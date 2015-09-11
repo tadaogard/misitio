@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html  lang="es" >
+
+
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Carnet A Piso</title>
+        
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/newcss.css" %}"/>
+        <!--<link rel="stylesheet" href="{% static "css/cover.css" %}"/>    -->
+        
+        <style>
+            /* Prevents slides from flashing */
+            #slides {
+              display:none;
+            }
+        </style>
+        
+        <script>
+            $(function(){
+                $("#slides").slidesjs({
+                    width: 940,
+                    height: 528
+                });
+            });
+        </script>
+       
+    </head>
+
+
+<body>
+    {% if Contenido %}
+        
+            <p>{{ Contenido.NombreContenido }}</p>
+            <p>{{ Contenido.AutorContenido }}</p>
+            <p>{{ Contenido.DescripcionContenido }}</p>
+            <p>{{ Contenido.EstiloContenido }}</p>
+            <p>{{ Contenido.ImagenContenido }}</p>
+            <p>{{ Contenido.Videos }}</p>
+            <p>{{ Contenido.Mangas }}</p>
+        
+    {% else %}
+        <p> Contenido no encontrado </p>
+    
+    {% endif %}
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html  lang="es" >
+
+<!-- SCRIPTS DE MOVIMIENTO -->
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+  <script src="http://notoyontoy.site40.net/Js/jquery.infinitecarousel3.min.js"></script>
+  <script type="text/javascript" src="http://notoyontoy.site40.net/Js/easing.js"></script>
+    <script>
+        var a = jQuery.noConflict();
+            a(document).ready(function() {
+            a('#carousel').infiniteCarousel({
+               imagePath: '',
+               transitionSpeed:12000,
+               displayTime: 0,
+               thumbnailType: 'none',
+               customClass: 'myCarousel',
+               easeLeft: 'linear',
+               easeRight:'linear',
+               inView: 5,
+               advance: 1,
+               autoPilot: true,
+               displayProgressRing: false,
+               showControls: false,
+               prevNextInternal: false
+            });
+        });
+    </script>
+    
+    <script>
+        var a = jQuery.noConflict();
+            a(document).ready(function() {
+            a('#carousel2').infiniteCarousel({
+               imagePath: '',
+               transitionSpeed:12000,
+               displayTime: 0,
+               thumbnailType: 'none',
+               customClass: 'myCarousel',
+               easeLeft: 'linear',
+               easeRight:'linear',
+               inView: 7,
+               advance: 1,
+               autoPilot: true,
+               displayProgressRing: false,
+               showControls: false,
+               prevNextInternal: false
+            });
+        });
+    </script>
+    <script> 
+        window.addEventListener?window.addEventListener('load',so_init,false):window.attachEvent('onload',so_init);
+        var d=document, imgs = new Array(), zInterval = null, current=0, pause=false;
+        function so_init() {
+            if(!d.getElementById || !d.createElement)return;
+            css = d.createElement('link');
+            css.setAttribute('href','slideshow2.css');
+            css.setAttribute('rel','stylesheet');
+            css.setAttribute('type','text/css');
+            d.getElementsByTagName('head')[0].appendChild(css);
+            imgs = d.getElementById('rotator').getElementsByTagName('img');
+            for(i=1;i<imgs.length;i++) imgs[i].xOpacity = 0;
+            imgs[0].style.display = 'block';
+            imgs[0].xOpacity = .99;
+            setTimeout(so_xfade,3000); }
+            function so_xfade() {
+            cOpacity = imgs[current].xOpacity;
+            nIndex = imgs[current+1]?current+1:0;
+            nOpacity = imgs[nIndex].xOpacity;
+            cOpacity-=.05;
+            nOpacity+=.05;
+            imgs[nIndex].style.display = 'block';
+            imgs[current].xOpacity = cOpacity;
+            imgs[nIndex].xOpacity = nOpacity;
+            setOpacity(imgs[current]);
+            setOpacity(imgs[nIndex]);
+            if(cOpacity<=0) {
+                imgs[current].style.display = 'none';
+                current = nIndex;
+                setTimeout(so_xfade,4000);}
+            else {
+                setTimeout(so_xfade,50);
+            }
+            function setOpacity(obj) {
+                if(obj.xOpacity>.99) {
+                    obj.xOpacity = .99;
+                    return; }
+            obj.style.opacity = obj.xOpacity;
+            obj.style.MozOpacity = obj.xOpacity;
+            obj.style.filter = 'alpha(opacity=' + (obj.xOpacity*100) + ')';
+        }
+    }
+    </script>
+
+
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Carnet A Piso</title>
+        
+        {% load staticfiles %}
+        <link rel="stylesheet" href="{% static "css/bootstrap.css" %}"/>
+        <link rel="stylesheet" href="{% static "css/newcss.css" %}"/>
+        <!--<link rel="stylesheet" href="{% static "css/cover.css" %}"/>    -->
+        
+        <style>
+            /* Prevents slides from flashing */
+            #slides {
+              display:none;
+            }
+        </style>
+        
+        <script>
+            $(function(){
+                $("#slides").slidesjs({
+                    width: 940,
+                    height: 528
+                });
+            });
+        </script>
+       
+    </head>
+    
+    <body>
+        <!-- BARRA SUPERIOR -->        
+        <div id="topPage" class="bluty">
+            <div class="container">
+                <div class="col-md-6 topBanner">
+                    <a href="/"><img alt="Logo" src="./static/img/logotipo.png" /></a>
+                </div>
+                <div id="rotator" class="col-md-3 topBanner2">
+                    <a href="/"><img alt="Título1" src="./static/img/spidertitan2.png" /></a>
+                    <a href="/"><img alt="Título2" src="./static/img/anime2.png" /></a>
+                    <a href="/"><img alt="Título3" src="./static/img/asd2.png" /></a>    
+                    <a href="/"><img alt="Título4" src="./static/img/cartoons.png" /></a>  
+                    <a href="/"><img alt="Título4" src="./static/img/htf.png" /></a> 
+                    <a href="/"><img alt="Título4" src="./static/img/puccagoku.png" /></a>
+                </div>
+    
+            </div>
+        </div>
+        
+        <!-- MENU -->
+        
+        <div class="container2" >
+            <div class= "row" >  
+                <div class="col-md-6">
+                    <form class="navbar-form navbar-left" action="/Buscar/" role="search" method="get">
+                        <div class="form-group">
+                            <input type="text" name="busq" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default" >Buscar</button>
+                    </form>
+                </div>
+                <div class="col-md-6"> 
+                    <ul class="nav nav-pills nav-justified" role="tablist" >
+                        <li><a href="/">Inicio</a></li>
+                        <li><a href="/Buscar/">Búsqueda Avanzada</a></li>
+                        <li><a href="/Contactanos/">Contáctanos</a><form action="/contacto/" method="get"></form></li>         
+                    </ul>
+                </div>
+            </div>
+        </div>
+    
+        <!-- LOGIN -->
+    <div>
+        <div class="boxLogin col-md-3">
+            <div class="login">
+                <div class="heading">
+                    <h2>Inicia sesión</h2>
+                    <form action="/Login/" method="get">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" placeholder="Nick o email" name="nombre" value=""/><br/>
+                        </div>
+            
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" placeholder="Contraseña" name="pass" value=""/>
+                        </div>
+                        <button style="color:black"  type="submit" class="float" name="Ingresar" value="ingresar">Entrar </button>
+                    </form>
+                    {% if errors %}
+                        <ul>
+                            <li>{{ errors }}</li>
+                            
+                        </ul>
+                    {% endif %}
+                        <ul>
+                            <a href="/Registrar/"><button style="color:black" type="submit" class="float" name="Registrar" value="registrar" >Regístrate </button></a>
+                        </ul>
+                        
+                </div>
+            </div>
+        </div>
+      
+        <!--TABLA MANGAS-->
+        
+        <br>
+        <div class="contCarr col-md-9">
+
+        
+        Para leer:
+            <ul id="carousel" class="rotatorCarousel"  >
+                
+                <li><img width="150" height="200" alt="" src="./static/img/MANGANARUTO.jpg" /></li>
+                <li><img width="150" height="200" alt="" src="./static/img/avengers.jpg" /></li>
+                <li><img width="150" height="200" alt="" src="./static/img/MANGANISEKOI.jpg" /></li>
+                <li><img width="150" height="200" alt="" src="./static/img/VENGADORES.jpg" /></li>
+                <li><img width="150" height="200" alt="" src="./static/img/images.jpg" /></li>
+                <li><img width="150" height="200" alt="" src="./static/img/MANGAMIRAINIKKI.JPG" /></li>
+            </ul>
+        </div>
+    </div>  
+        <!--TABLA ANIME-->
+       
+        <br/><br/><br/>
+        
+        
+        <div id="carouselAnime">
+            <div class="contCarr">
+            Ultimos videos:
+                <ul id="carousel2" class="rotatorCarousel" >
+                    <li><img width="150" height="200" alt="" src="./static/img/pokemon.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/candy.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/pyc.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/vyp.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/sailor.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/pokemon.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/pyc.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/vyp.jpg" /></li>
+                    <li><img width="150" height="200" alt="" src="./static/img/sailor.jpg" /></li>
+                </ul>
+            </div>
+        </div>
+         
+        <!--FOOTER-->
+            
+        <div class="container3"  id="footerRegistro">
+            <p class="text-muted">Carnet al Piso S.A.</p>
+        </div>
+        
+    </body>
+
+</html>
